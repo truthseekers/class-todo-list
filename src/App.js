@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { initialTodos } from "./data";
+import TodoList from "./TodoList";
 
 class App extends React.Component {
   constructor(props) {
@@ -14,7 +15,12 @@ class App extends React.Component {
 
   render() {
     console.log(this.state.todos);
-    return <div>Todo List</div>;
+    return (
+      <div className="App">
+        <h3>Current Todos:</h3>
+        <TodoList todos={this.state.todos} />
+      </div>
+    );
   }
 }
 
