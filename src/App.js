@@ -12,6 +12,25 @@ class App extends React.Component {
       todos: initialTodos,
       textField: "",
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNameFieldChange = this.handleNameFieldChange.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let newTodos = [
+      ...this.state.todos,
+      {
+        id: this.state.todos.length,
+        title: this.state.textField,
+        isCompleted: false,
+      },
+    ];
+    this.setState({
+      todos: newTodos,
+      textField: "",
+    });
   }
 
   handleNameFieldChange(e) {
@@ -27,7 +46,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h3>Todos List</h3>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>
             <input
               type="text"
