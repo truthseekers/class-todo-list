@@ -10,13 +10,35 @@ class App extends React.Component {
 
     this.state = {
       todos: initialTodos,
+      textField: "",
     };
+  }
+
+  handleNameFieldChange(e) {
+    let newTextField = e.target.value;
+    this.setState({
+      todos: this.state.todos,
+      textField: newTextField,
+    });
   }
 
   render() {
     console.log(this.state.todos);
     return (
       <div className="App">
+        <h3>Todos List</h3>
+        <form>
+          <label>
+            <input
+              type="text"
+              value={this.state.textField}
+              onChange={this.handleNameFieldChange}
+              placeholder="Todo Item"
+              name="name"
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
         <h3>Current Todos:</h3>
         <TodoList todos={this.state.todos} />
       </div>
