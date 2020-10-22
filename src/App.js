@@ -16,6 +16,7 @@ class App extends React.Component {
     this.updateTodo = this.updateTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameFieldChange = this.handleNameFieldChange.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
   }
 
   handleSubmit(e) {
@@ -55,6 +56,14 @@ class App extends React.Component {
     });
   }
 
+  deleteTodo(deletedId) {
+    let newTodos = this.state.todos.filter((elem) => elem.id !== deletedId);
+    this.setState({
+      todos: newTodos,
+      textField: this.state.textField,
+    });
+  }
+
   render() {
     console.log(this.state.todos);
     return (
@@ -73,7 +82,11 @@ class App extends React.Component {
           <input type="submit" value="Submit" />
         </form>
         <h3>Current Todos:</h3>
-        <TodoList updateTodo={this.updateTodo} todos={this.state.todos} />
+        <TodoList
+          deleteTodo={this.deleteTodo}
+          updateTodo={this.updateTodo}
+          todos={this.state.todos}
+        />
       </div>
     );
   }
