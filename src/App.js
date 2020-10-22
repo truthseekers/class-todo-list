@@ -13,6 +13,7 @@ class App extends React.Component {
       textField: "",
     };
 
+    this.updateTodo = this.updateTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameFieldChange = this.handleNameFieldChange.bind(this);
   }
@@ -41,6 +42,19 @@ class App extends React.Component {
     });
   }
 
+  updateTodo(updatedId) {
+    let newTodos = [...this.state.todos];
+    newTodos.forEach((elem) => {
+      if (elem.id == updatedId) {
+        elem.isCompleted = !elem.isCompleted;
+      }
+    });
+    this.setState({
+      todos: newTodos,
+      textField: this.state.textField,
+    });
+  }
+
   render() {
     console.log(this.state.todos);
     return (
@@ -59,7 +73,7 @@ class App extends React.Component {
           <input type="submit" value="Submit" />
         </form>
         <h3>Current Todos:</h3>
-        <TodoList todos={this.state.todos} />
+        <TodoList updateTodo={this.updateTodo} todos={this.state.todos} />
       </div>
     );
   }

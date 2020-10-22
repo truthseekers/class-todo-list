@@ -13,7 +13,15 @@ class TodoList extends React.Component {
         <ul style={{ listStyleType: "none" }}>
           {this.props.todos.map((elem) => {
             if (!elem.isCompleted) {
-              return <TodoItem key={elem.id} title={elem.title} />;
+              return (
+                <TodoItem
+                  key={elem.id}
+                  id={elem.id}
+                  isCompleted={elem.isCompleted}
+                  updateTodo={this.props.updateTodo}
+                  title={elem.title}
+                />
+              );
             }
           })}
         </ul>
@@ -21,7 +29,15 @@ class TodoList extends React.Component {
         <ul style={{ listStyleType: "none" }}>
           {this.props.todos.map((elem) => {
             if (elem.isCompleted) {
-              return <TodoItem key={elem.id} title={elem.title} />;
+              return (
+                <TodoItem
+                  key={elem.id}
+                  id={elem.id}
+                  isCompleted={elem.isCompleted}
+                  updateTodo={this.props.updateTodo}
+                  title={elem.title}
+                />
+              );
             }
           })}
         </ul>
